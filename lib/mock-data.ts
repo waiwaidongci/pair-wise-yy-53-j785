@@ -1,3 +1,4 @@
+import type { ApprovalMaterial } from './approval-types'
 import type { DraftVersion, LicenseWindow, RightsComment } from './types'
 
 export const initialWindows: LicenseWindow[] = [
@@ -18,3 +19,12 @@ export const versions: DraftVersion[] = [
   { id: 'v18', author: '章宁', time: '今天 16:35', summary: '调整《远山回声》流媒体窗口并增加港台地区', changes: ['RW-102 开窗日期由 11-15 调整为 11-20', '新增流媒体中国香港、中国台湾窗口', '独占范围拆分与宣传物料条件'] },
   { id: 'v17', author: '黎清', time: '今天 14:08', summary: '补充院线优先权和次级授权限制', changes: ['院线窗口优先级提升为 1', '电视窗口禁止提前点映', '转授权增加地区与时长限制'] },
 ]
+
+export const initialMaterials: ApprovalMaterial[] = [
+  { id: 'MT-01', name: '中国大陆院线海报与预告', windowIds: ['RW-101'], version: 'm-2026.10', checksum: 'seed-mt01', updatedAt: '2026-09-28T09:00:00.000Z' },
+  { id: 'MT-02', name: '流媒体独占物料包（大陆）', windowIds: ['RW-102'], version: 'm-2026.11', checksum: 'seed-mt02', updatedAt: '2026-09-29T09:00:00.000Z' },
+  { id: 'MT-03', name: '卫视电视版成片包', windowIds: ['RW-103'], version: 'm-2026.09', checksum: 'seed-mt03', updatedAt: '2026-09-25T09:00:00.000Z' },
+  { id: 'MT-04', name: '新加坡流媒体物料包', windowIds: ['RW-104'], version: 'm-2026.12', checksum: 'seed-mt04', updatedAt: '2026-09-30T09:00:00.000Z' },
+]
+
+export const defaultReviewers = ['黎清（法务）', '章宁（发行）']

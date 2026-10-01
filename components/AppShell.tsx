@@ -2,16 +2,21 @@
 
 import { Box, Flex, HStack, Heading, Text, Badge, Button } from '@chakra-ui/react'
 import Link from 'next/link'
-import { usePathname } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
+import { trpc } from '@/trpc/client'
 
 const nav = [
   { href: '/', label: '窗口总览' },
   { href: '/windows', label: '授权窗口' },
   { href: '/reviews', label: '审阅与版本' },
+  { href: '/approvals', label: '审批版本链' },
 ]
 
 export function AppShell({ children }: { children: React.ReactNode }) {
   const pathname = usePathname()
+  const router = useRouter()
+  const view = trpc.approvalView.useQuery()
+  const activeCount = view.data?.snapshots.filter((s) => s.status === 'active').length ?? 0
   return (
     <Flex minH="100vh">
       <Box as="aside" w={{ base: '72px', lg: '224px' }} bg="#0f172a" color="white" position="sticky" top={0} h="100vh" px={{ base: 2, lg: 3 }} py={4}>
@@ -23,9 +28,9 @@ export function AppShell({ children }: { children: React.ReactNode }) {
       </Box>
       <Box minW={0} flex={1}>
         <Flex h="64px" bg="white" borderBottom="1px solid" borderColor="gray.200" align="center" px={5} gap={3} position="sticky" top={0} zIndex={20}>
-          <Box flex={1}><Heading fontSize="sm">华映内容集团 · 2026 国际发行草案</Heading><Text fontSize="11px" color="gray.500" display={{ base: 'none', md: 'block' }}>法务与发行联合审阅</Text></Box>
-          <Badge colorScheme="green" variant="subtle">版本 v18 已自动保存</Badge>
-          <Button size="sm" colorScheme="blue">发起审批</Button>
+          <Box flex={1}><Heading fontSize="sm">华映内容集团 · 2026 国际发行草案</Heading><Text fontSize="11px" color="gray.500" display={{ base: 'none', md: 'block' }}>法务与发行联合审阅 · 快照版本链</Text></Box>
+          {view.data && <Badge colorScheme="purple" variant="subtle">修订 r{view.data.revision} · {activeCount} 个审批中</Badge>}
+          <Button size="sm" colorScheme="blue" onClick={() => router.push('/approvals')}>发起审批</Button>
         </Flex>
         <Box p={{ base: 3, lg: 5 }} maxW="1680px" mx="auto">{children}</Box>
       </Box>
