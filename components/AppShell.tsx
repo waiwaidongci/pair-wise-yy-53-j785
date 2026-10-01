@@ -25,7 +25,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
         <Flex h="64px" bg="white" borderBottom="1px solid" borderColor="gray.200" align="center" px={5} gap={3} position="sticky" top={0} zIndex={20}>
           <Box flex={1}><Heading fontSize="sm">华映内容集团 · 2026 国际发行草案</Heading><Text fontSize="11px" color="gray.500" display={{ base: 'none', md: 'block' }}>法务与发行联合审阅</Text></Box>
           <Badge colorScheme="green" variant="subtle">版本 v18 已自动保存</Badge>
-          <Button size="sm" colorScheme="blue">发起审批</Button>
+          <Button size="sm" colorScheme="blue" as={Link} href="/reviews">发起审批</Button>
         </Flex>
         <Box p={{ base: 3, lg: 5 }} maxW="1680px" mx="auto">{children}</Box>
       </Box>

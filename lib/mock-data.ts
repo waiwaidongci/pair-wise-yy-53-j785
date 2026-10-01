@@ -1,4 +1,4 @@
-import type { DraftVersion, LicenseWindow, RightsComment } from './types'
+import type { DraftVersion, FrozenMaterial, LicenseWindow, RightsComment } from './types'
 
 export const initialWindows: LicenseWindow[] = [
   { id: 'RW-101', workId: 'W-001', work: '《远山回声》', channel: '星海影院', rights: '院线', territory: '中国大陆', start: '2026-10-18', end: '2026-12-05', exclusive: true, sublicense: false, priority: 1, status: '冲突' },
@@ -17,4 +17,17 @@ export const initialComments: RightsComment[] = [
 export const versions: DraftVersion[] = [
   { id: 'v18', author: '章宁', time: '今天 16:35', summary: '调整《远山回声》流媒体窗口并增加港台地区', changes: ['RW-102 开窗日期由 11-15 调整为 11-20', '新增流媒体中国香港、中国台湾窗口', '独占范围拆分与宣传物料条件'] },
   { id: 'v17', author: '黎清', time: '今天 14:08', summary: '补充院线优先权和次级授权限制', changes: ['院线窗口优先级提升为 1', '电视窗口禁止提前点映', '转授权增加地区与时长限制'] },
+]
+
+export const initialMaterials: FrozenMaterial[] = [
+  { id: 'MT-01', name: '《远山回声》主海报', type: '宣传物料', region: '中国大陆', note: '院线与流媒体通用' },
+  { id: 'MT-02', name: '《远山回声》港澳台物料包', type: '地区物料包', region: '中国香港/中国台湾', note: '按意见拆分为两个物料包' },
+  { id: 'MT-03', name: '《深港口岸》东南亚授权证明', type: '授权证明', region: '东南亚区域' },
+]
+
+export const materialCatalog: Omit<FrozenMaterial, 'id'>[] = [
+  { name: '《远山回声》短视频片段包', type: '宣传物料', region: '中国大陆', note: '单片不超过 3 分钟' },
+  { name: '《深港口岸》机舱版剪辑', type: '地区物料包', region: '航空', note: '航空渠道专用' },
+  { name: '《远山回声》港台拆分海报（香港）', type: '地区物料包', region: '中国香港' },
+  { name: '《远山回声》港台拆分海报（台湾）', type: '地区物料包', region: '中国台湾' },
 ]

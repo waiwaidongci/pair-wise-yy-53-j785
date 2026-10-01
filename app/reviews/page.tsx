@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { Box, Flex, Grid, Heading, Text, Badge, Button, Textarea, Checkbox, Tabs, TabList, Tab, TabPanels, TabPanel, useToast, HStack } from '@chakra-ui/react'
 import { useRightsStore } from '@/store/rights'
 import { versions } from '@/lib/mock-data'
+import { ApprovalWorkbench } from '@/components/ApprovalWorkbench'
 
 export default function ReviewsPage() {
   const comments = useRightsStore((state) => state.comments)
@@ -24,7 +25,10 @@ export default function ReviewsPage() {
   }
   return (
     <Box>
-      <Flex justify="space-between" mb={5} gap={4} direction={{ base: 'column', md: 'row' }}><Box><Text color="brand.600" fontSize="xs" fontWeight="bold">VERSION & APPROVAL</Text><Heading fontSize="3xl" my={1}>版本比较与条款合并</Heading><Text color="gray.600">评论锚定具体窗口和条款，任意版本可逐项接受，已确认版本进入只读审批。</Text></Box><Button colorScheme="blue" onClick={exportPackage}>导出可追溯审批包</Button></Flex>
+      <Flex justify="space-between" mb={5} gap={4} direction={{ base: 'column', md: 'row' }}><Box><Text color="brand.600" fontSize="xs" fontWeight="bold">VERSION & APPROVAL</Text><Heading fontSize="3xl" my={1}>版本比较与审批快照</Heading><Text color="gray.600">发起审批即冻结窗口、独占范围、未处理意见与物料；任一变化让受影响快照与未完成签署失效，正式快照与已完成签署继续有效。</Text></Box><Button colorScheme="blue" onClick={exportPackage}>导出可追溯审批包</Button></Flex>
+
+      <Box mb={5}><ApprovalWorkbench /></Box>
+
       <Tabs colorScheme="blue" variant="enclosed">
         <TabList><Tab>条款意见</Tab><Tab>版本差异</Tab><Tab>审批时间线</Tab></TabList>
         <TabPanels>
