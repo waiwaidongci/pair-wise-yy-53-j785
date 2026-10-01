@@ -1,0 +1,8 @@
+:root { --background: #eef2f6; --foreground: #172033; }
+* { box-sizing: border-box; }
+html, body { margin: 0; min-width: 320px; background: var(--background); color: var(--foreground); }
+body { font-family: "PingFang SC", "Microsoft YaHei", sans-serif; }
+button, input, select { font: inherit; }
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 6px; }
+@media print { .no-print { display: none !important; } body { background: #fff; } }
